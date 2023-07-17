@@ -1,18 +1,26 @@
-import AbstractFactory from "./structure/factories/AbstractFactory.js";
-import ConcreteFactory1 from "./structure/factories/ConcreteFactory1.js";
-import ConcreteFactory2 from "./structure/factories/ConcreteFactory2.js";
+import DecoArtFurnitureFactory from "./example/factories/DecoArtFurnitureFactory.js";
+import FurnitureFactory from "./example/factories/FurnitureFactory.js";
+import ModernFurnitureFactory from "./example/factories/ModernFurnitureFactory.js";
+import VictorianFurnitureFactory from "./example/factories/VictorianFurnitureFactory.js";
 
-function useFactory(factory: AbstractFactory) {
-    const productA = factory.createProductA();
-    const productB = factory.createProductB();
+function useFurniture(factory: FurnitureFactory) {
+    const chair = factory.createChair();
+    const sofa = factory.createSofa();
+    const coffeTable = factory.cretaeCoffeTable();
 
-    console.log(productB.usefulFunctionB());
-    console.log(productB.anotherUsefulFunctionB(productA));
+    chair.sitOn();
+    sofa.sitOn();
+    coffeTable.move();
 }
 
-console.log("Testing products creation with factory 1");
-useFactory(new ConcreteFactory1());
-
+console.log("Victorian furnitue");
+useFurniture(new VictorianFurnitureFactory());
 console.log("");
-console.log("Testing products creation with factory 2");
-useFactory(new ConcreteFactory2());
+
+console.log("DecoArt furnitue");
+useFurniture(new DecoArtFurnitureFactory());
+console.log("");
+
+console.log("Modern furnitue");
+useFurniture(new ModernFurnitureFactory());
+console.log("");
